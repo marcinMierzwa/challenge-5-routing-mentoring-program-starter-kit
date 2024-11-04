@@ -1,0 +1,14 @@
+.link-active-class {
+    position: relative;
+    text-decoration: none;
+  }
+  
+  .link-active-class::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; 
+    width: 100%;
+    height: 1px; 
+    background-color: currentColor;
+  }
