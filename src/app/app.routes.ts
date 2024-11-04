@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { ListComponent } from './list.component';
-import { NotFound } from './not-found.component';
+import { NotFoundComponent } from './not-found.component';
+import { DetailComponent } from './detail.component';
+import { EditComponent } from './edit.component';
 
 export const routes: Routes = [
   {
@@ -14,7 +16,18 @@ export const routes: Routes = [
     title: 'Home',
   },
   {
+    path: 'detail/:id',
+    component: DetailComponent,
+    title: 'Detail'
+  },
+  {
+    path: 'edit/:id',
+    component: EditComponent,
+    title: 'Edit'
+  }, 
+  {
     path: '**',
-    component: NotFound
+    component: NotFoundComponent,
+    title: 'Page Not Found'
   },
 ];
