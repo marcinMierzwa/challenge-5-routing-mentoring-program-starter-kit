@@ -18,9 +18,12 @@ export interface User {
 export class UserService {
     httpClient: HttpClient = inject(HttpClient);
 
+    // https://fakestoreapi.com/users
     getAll() {}
 
+    // https://fakestoreapi.com/users/1
     getOne() {}
+    
 
     update() {}
 }

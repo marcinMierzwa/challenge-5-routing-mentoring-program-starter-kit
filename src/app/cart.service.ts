@@ -17,5 +17,6 @@ export interface Cart {
 export class CartService {
     httpClient: HttpClient = inject(HttpClient);
 
+    // https://fakestoreapi.com/carts/user/2
     getCart() {}
 }
