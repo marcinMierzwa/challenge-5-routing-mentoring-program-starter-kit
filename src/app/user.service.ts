@@ -53,5 +53,10 @@ export class UserService {
       );
   }
 
-  update() {}
+  update(user: User): Observable<User> {
+    return this.httpClient.put<User>(
+      `https://fakestoreapi.com/users/${user.id}`,
+      user
+    );
+  }
 }
