@@ -1,22 +1,36 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
 
 export interface Cart {
-    userId: number,
-    products: [
-        {
-            productId: number;
-            quantity: null;
-        }
-    ]
+  userId: number;
+  products: [
+    {
+      productId: number;
+      quantity: number;
+    }
+  ];
 }
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class CartService {
-    httpClient: HttpClient = inject(HttpClient);
+  httpClient: HttpClient = inject(HttpClient);
 
-    // https://fakestoreapi.com/carts/user/2
-    getCart() {}
+  getCart(id: string): Observable<Cart[]> {
+    return this.httpClient
+      .get<any[]>(`https://fakestoreapi.com/carts/user/${id}`)
+      .pipe(
+        map((carts: any[]) =>
+          carts.map((cart: any) => ({
+            userId: cart.userId,
+            products: cart.products.map((product: any) => ({
+              productId: product.productId,
+              quantity: product.quantity,
+            })),
+          }))
+        )
+      );
+  }
 }
